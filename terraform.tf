@@ -19,7 +19,4 @@ provider "aws" {
   region = var.region_2
 }
 
-provider "aws" {
-  alias = "central"
-  region = "us-central-1"
-}
+
