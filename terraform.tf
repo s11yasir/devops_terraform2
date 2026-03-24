@@ -18,3 +18,8 @@ provider "aws" {
   alias = "east"
   region = var.region_2
 }
+
+provider "aws" {
+  alias = "central"
+  region = "us-central-1"
+}
