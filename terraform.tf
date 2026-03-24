@@ -7,12 +7,6 @@ terraform {
     }
   }
 
-cloud {
-    organization = "devops_terraform2"
-    workspaces {
-      name = "devops_terraform2"
-    }
-  }
 
 }
 
