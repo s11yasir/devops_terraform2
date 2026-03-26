@@ -6,11 +6,17 @@ variable "region" {
 variable "region_2" {
   description = "The secondary AWS region to deploy resources in"
   type        = string
-  default     = "us-east-1"
+  default     = "us-east-2"
 }
 
 variable "vpc_cidr" {
   description = "The CIDR block for the VPC"
   type        = string
   default     = "10.0.0.0/16"
+}
+
+variable "availability_zones" {
+  description = "The availability zones to deploy resources in"
+  type        = list(string)
+  default     = ["us-east-1a", "us-east-1b", "us-east-1c"]
 }
