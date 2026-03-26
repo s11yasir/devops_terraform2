@@ -10,7 +10,7 @@ resource "aws_subnet" "main_subnet" {
   provider = aws.east
   count = 2
   vpc_id            = aws_vpc.my_vpc.id
-  cidr_block        = "var.vpc_cidr"
+  cidr_block        = cidrsubnet(var.vpc_cidr, 8, count.index)
   availability_zone = var.availability_zones[count.index]
   tags = {
     Name = "main-subnet"
