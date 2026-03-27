@@ -26,3 +26,16 @@ variable "availability_zones_2" {
   type        = list(string)
   default     = ["us-east-2a", "us-east-2b", "us-east-2c"]
 }
+
+variable "region_vpc" {
+  description = "The name of the VPC to create in the primary region"
+  type        = string
+  default     = "primary-region-vpc"
+  
+}
+
+variable "region_2_vpc" {
+  description = "The name of the VPC to create in the secondary region"
+  type        = string
+  default     = "secondary-region-vpc"
+}
