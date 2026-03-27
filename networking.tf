@@ -11,7 +11,9 @@ module "vpc" {
 
   enable_vpn_gateway = true
   single_nat_gateway = true
-
+  azs = var.availability_zones
+  public_subnets = [for i in range(length(var.availability_zones)) : cidrsubnet(var.vpc_cidr, 8, i)]
+  private_subnets = [for i in range(length(var.availability_zones)) : cidrsubnet(var.vpc_cidr, 8, i + length(var.availability_zones))]
 }
 
 resource "aws_internet_gateway" "internet_gateway" {
@@ -27,11 +29,9 @@ resource "aws_route_table" "public_route_table" {
     gateway_id = aws_internet_gateway.internet_gateway.id
   }
 }
-
-resource "aws_subnet" "public_subnet" {
-count = length(var.availability_zones)
-  vpc_id            = module.vpc.vpc_id
-  cidr_block        = cidrsubnet(var.vpc_cidr, 8, count.index)
-  availability_zone = var.availability_zones[count.index]
+resource "aws_route_table_association" "public_route_table_association" {
+  count = length(var.availability_zones)
+  subnet_id = module.vpc.public_subnets[count.index]
+  route_table_id = aws_route_table.public_route_table.id
   
 }
