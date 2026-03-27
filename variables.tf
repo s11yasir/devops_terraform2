@@ -20,3 +20,9 @@ variable "availability_zones" {
   type        = list(string)
   default     = ["us-east-1a", "us-east-1b", "us-east-1c"]
 }
+
+variable "availability_zones_2" {
+  description = "The availability zones to deploy resources in for the secondary region"
+  type        = list(string)
+  default     = ["us-east-2a", "us-east-2b", "us-east-2c"]
+}
