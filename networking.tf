@@ -2,6 +2,10 @@ module "vpc" {
     
   source = "terraform-aws-modules/vpc/aws"
   enable_nat_gateway = true
+
+ providers = {
+    aws = aws.east
+  }
   
 
 
