@@ -13,7 +13,7 @@ module "vpc" {
   single_nat_gateway = true
   azs = var.availability_zones
   public_subnets = [for i in range(length(var.availability_zones)) : cidrsubnet(var.vpc_cidr, 8, i)]
-
+  private_subnets = [for i in range(length(var.availability_zones)) : cidrsubnet(var.vpc_cidr, 8, i + length(var.availability_zones))]
 }
 
 resource "aws_internet_gateway" "internet_gateway" {
